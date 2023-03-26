@@ -1,0 +1,53 @@
+* {
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding:0;
+}
+body{
+    background: #ebebeb;
+}
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #000;
+    padding: 0.5em;
+    padding-left: 2em;
+    padding-right: 2em;
+}
+header h1{
+    color: whitesmoke;
+}
+header a{
+    background-color:#ebebeb;
+    color: #000;
+    text-decoration: none;
+    padding: 0.5em;
+}
+header a:hover{
+    background: #c0c0c0;
+}
+.doc>div h2{
+    text-align: right;
+    font-weight: 100;
+    font-size: 2em;
+}
+.doc>div p{
+    font-size: 1.5em;
+}
+.doc>div h3{
+    text-align: left;
+    font-size: 2em;
+    margin-bottom: 2em;
+}
+.doc>div h1{
+    font-weight: 700;
+    font-size: 4em;
+    text-align: center;
+}
+.doc>div{
+    margin: auto;
+    width: 80%;
+    margin-top: 3em;
+    margin-bottom: 3em;
+}

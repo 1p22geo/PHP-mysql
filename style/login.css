@@ -1,0 +1,43 @@
+* {
+    font-family:Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding:0;
+}
+body{
+    background: #ebebeb;
+}
+form.wide{
+    width: 50%;
+}
+form.wide input{
+    font-size: larger
+}
+form{
+    margin: auto;
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    text-align: center;
+    width: 20%;
+    margin-top: 5rem;
+    box-shadow: 10px 10px 10px 0px  rgba(0, 0, 0, 25%);
+    border-left: 1em solid black;
+    background: #dfdfdf;
+    padding: 2em;
+    margin-bottom: 5rem;
+}
+form input{
+    padding: 2px;
+    width: 75%;
+}
+form button{
+    width: 12em;
+}
+form *{
+    margin-bottom: 0.5em;
+}
+form a{
+    text-decoration: none;
+    margin-top: 2em;
+    color: #4b5ecc;
+}
