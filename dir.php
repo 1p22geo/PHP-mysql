@@ -31,7 +31,6 @@ else{
     $user = $res->fetch_assoc()['username'];
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +38,6 @@ else{
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/style.css">
-
     <title>Document</title>
 </head>
 <body>
@@ -48,33 +46,23 @@ else{
         <a href="logout.php?session=<?php echo $id?>">Log out</a>
     </header>
     <section>
-        <a href="dir.php?session=<?php echo $id?>" class='link'>Download files</a>
-        <h2>Documents today:</h2>
-
+        <h2>Files:</h2>
         <div>
-        <?php
-            $res = query("SELECT * FROM documents ORDER BY submitted DESC");
-            if($res->num_rows > 0){
-                while($row = $res->fetch_assoc()){
-                    $docid = $row['id'];
-                    $title = $row['title'];
-                    $date = $row['submitted'];
-                    $desc = $row['doc_description'];
-                    echo <<<STR
-                    <article>
-                        <h2>{$title}</h2>
-                        <h3>{$date}</h3>
-                        
-                        <p>
-                            {$desc}
-                        </p>
-                        <a href=doc.php?doc={$docid}&session={$id}>Continue reading</a>
-                    </article>
-                    STR;
-                }
-            }
-            ?>
+        <?php 
+        $files = scandir('uploads');
+        for($n=2;$n<count($files);$n++){
+            $file = $files[$n];
+            echo <<<STR
+            <article>
+                <h2>{$file}</h2>
+                </p>
+                <a href=download.php?doc={$file}&session={$id}>Donload</a>
+            </article>
+            STR;
+        }
+        ?>
         </div>
     </section>
+
 </body>
 </html>

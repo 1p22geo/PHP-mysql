@@ -29,6 +29,10 @@ if($res->num_rows <1){
 }
 else{
     $user = $res->fetch_assoc()['username'];
+    if ($user != 'admin'){
+        header('Location: /index.php');
+        die();
+    }
 }
 ?>
 
@@ -38,8 +42,8 @@ else{
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/login.css">
     <link rel="stylesheet" href="style/style.css">
-
     <title>Document</title>
 </head>
 <body>
@@ -47,34 +51,22 @@ else{
         <h1>Hi, <?php echo $user?></h1>
         <a href="logout.php?session=<?php echo $id?>">Log out</a>
     </header>
-    <section>
-        <a href="dir.php?session=<?php echo $id?>" class='link'>Download files</a>
-        <h2>Documents today:</h2>
-
-        <div>
+    <form enctype="multipart/form-data" action="file.php" method="POST">
         <?php
-            $res = query("SELECT * FROM documents ORDER BY submitted DESC");
-            if($res->num_rows > 0){
-                while($row = $res->fetch_assoc()){
-                    $docid = $row['id'];
-                    $title = $row['title'];
-                    $date = $row['submitted'];
-                    $desc = $row['doc_description'];
-                    echo <<<STR
-                    <article>
-                        <h2>{$title}</h2>
-                        <h3>{$date}</h3>
-                        
-                        <p>
-                            {$desc}
-                        </p>
-                        <a href=doc.php?doc={$docid}&session={$id}>Continue reading</a>
-                    </article>
-                    STR;
-                }
-            }
-            ?>
-        </div>
-    </section>
+        if (array_key_exists('submitted', $_GET)){
+            echo '<h2>File subitted succesfully</h2>';
+        }
+        if (array_key_exists('wrong', $_GET)){
+            echo '<h2>Something went wrong</h2>';
+        }
+        ?>
+    <!-- MAX_FILE_SIZE must precede the file input field -->
+    <input type="hidden" name="MAX_FILE_SIZE" value="300000" />
+    <!-- Name of input element determines name in $_FILES array -->
+    Send this file: <input name="userfile" type="file" />
+    <input type="submit" value="Send File" />
+    <input name='session' hidden value='<?php echo $id?>'>
+
+</form>
 </body>
 </html>

@@ -74,8 +74,14 @@ else{
                 <a href="sessions.php?session=<?php echo $id?>">Manage sessions</a>
                 <img src="img/laptop.png" alt='image'>
             </article>
+            <article>
+                <a href="upload.php?session=<?php echo $id?>">Upload files</a>
+                <img src="img/file.png" alt='image'>
+            </article>
         </div>
     </section>
+    <a href="dir.php?session=<?php echo $id?>" class='link'>Download files</a>
+
     <section>
         <h2>Documents today:</h2>
         <div>
